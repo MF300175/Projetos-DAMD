@@ -1,0 +1,21 @@
+{
+  "name": "consumer-analytics",
+  "version": "1.0.0",
+  "description": "Consumer RabbitMQ para analytics de checkout",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.3"
+  },
+  "keywords": [
+    "rabbitmq",
+    "consumer",
+    "analytics",
+    "checkout"
+  ],
+  "author": "Mauricio Fernandes Leite",
+  "license": "MIT"
+}
