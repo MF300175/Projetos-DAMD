@@ -1,0 +1,34 @@
+[
+  {
+    "id": "51c90695-7b81-4e0d-b88e-725379960384",
+    "email": "admin@listacompras.com",
+    "username": "admin",
+    "password": "$2a$12$8M1nznmLS0/y4Y.tMtzqq.GUM/bF.XMd28USOp8sq6N8gJTMPiVRa",
+    "firstName": "Administrador",
+    "lastName": "Sistema",
+    "preferences": {
+      "defaultStore": "Supermercado Central",
+      "currency": "BRL"
+    },
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2025-09-19T13:12:47.838Z",
+    "updatedAt": "2025-09-19T13:12:47.839Z"
+  },
+  {
+    "id": "2682dfb4-b0fd-4e19-8c20-042836c1d683",
+    "email": "test-1763589186007@example.com",
+    "username": "testuser",
+    "password": "$2a$12$ufBOqog1lUdqqBHDaCnmU.rtlE/YVH7fmoL3JssG9wwF2wNhl3Q.G",
+    "firstName": "Test",
+    "lastName": "User",
+    "preferences": {
+      "defaultStore": "",
+      "currency": "BRL"
+    },
+    "role": "user",
+    "status": "active",
+    "createdAt": "2025-11-19T21:53:06.508Z",
+    "updatedAt": "2025-11-19T21:53:06.508Z"
+  }
+]

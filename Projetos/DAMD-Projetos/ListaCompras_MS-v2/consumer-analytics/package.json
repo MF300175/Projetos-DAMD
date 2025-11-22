@@ -1,0 +1,15 @@
+{
+  "name": "consumer-analytics",
+  "version": "1.0.0",
+  "description": "Consumer para análise de dados de checkout de listas de compras",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3"
+  }
+}
