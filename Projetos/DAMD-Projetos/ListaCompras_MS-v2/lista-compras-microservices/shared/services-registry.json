@@ -9,10 +9,10 @@
       "/categories",
       "/search"
     ],
-    "registeredAt": 1763845634491,
-    "lastHealthCheck": 1763848551162,
+    "registeredAt": 1763948895561,
+    "lastHealthCheck": 1763949629358,
     "healthy": true,
-    "pid": 21324
+    "pid": 2072
   },
   "user-service": {
     "name": "user-service",
@@ -24,10 +24,10 @@
       "/users/*",
       "/search"
     ],
-    "registeredAt": 1763845638280,
-    "lastHealthCheck": 1763848551166,
+    "registeredAt": 1763948894754,
+    "lastHealthCheck": 1763949629369,
     "healthy": true,
-    "pid": 22752
+    "pid": 12480
   },
   "list-service": {
     "name": "list-service",
@@ -37,9 +37,9 @@
     "endpoints": [
       "/lists/*"
     ],
-    "registeredAt": 1763845642538,
-    "lastHealthCheck": 1763848551170,
+    "registeredAt": 1763948897682,
+    "lastHealthCheck": 1763949629380,
     "healthy": true,
-    "pid": 10192
+    "pid": 2916
   }
 }

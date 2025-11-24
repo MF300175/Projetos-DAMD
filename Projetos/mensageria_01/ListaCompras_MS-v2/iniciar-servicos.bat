@@ -8,11 +8,11 @@ echo.
 echo [1/6] Verificando Node.js...
 node --version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo ❌ Node.js nao encontrado. Instale Node.js primeiro.
+    echo Node.js nao encontrado. Instale Node.js primeiro.
     pause
     exit /b 1
 )
-echo ✅ Node.js encontrado
+echo Node.js encontrado
 echo.
 
 echo [2/6] Instalando dependencias...
@@ -57,19 +57,19 @@ timeout /t 10 /nobreak >nul
 
 echo.
 echo ========================================
-echo 🎉 Servicos iniciados!
+echo Servicos iniciados!
 echo ========================================
 echo.
 echo URLs dos servicos:
-echo   📡 API Gateway:    http://localhost:3000
-echo   👥 User Service:   http://localhost:3001
-echo   📋 List Service:   http://localhost:3002
-echo   🛒 Item Service:   http://localhost:3003
+echo   API Gateway:    http://localhost:3000
+echo   User Service:   http://localhost:3001
+echo   List Service:   http://localhost:3002
+echo   Item Service:   http://localhost:3003
 echo.
-echo 🐰 RabbitMQ UI:     http://localhost:15672 (se Docker)
+echo RabbitMQ UI:     http://localhost:15672 (se Docker)
 echo.
-echo 🧪 Para testar: node teste-manual.js
-echo 📱 Para app: configure IP no Flutter app
+echo Para testar: node teste-manual.js
+echo Para app: configure IP no Flutter app
 echo.
 echo Pressione qualquer tecla para fechar...
 pause >nul

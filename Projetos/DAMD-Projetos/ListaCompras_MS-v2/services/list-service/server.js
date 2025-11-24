@@ -247,6 +247,19 @@ class ListService {
         }
     }
 
+    async getUserEmail(userId, authToken) {
+        try {
+            const userService = serviceRegistry.discover('user-service');
+            const response = await axios.get(`${userService.url}/users/${userId}`, {
+                headers: { 'Authorization': authToken || 'Bearer demo-token' }
+            });
+            return response.data.data?.email || null;
+        } catch (error) {
+            console.error('Erro ao buscar email do usuário:', error.message);
+            return null;
+        }
+    }
+
     calculateSummary(list) {
         const totalItems = list.items.length;
         const purchasedItems = list.items.filter(item => item.purchased).length;
@@ -707,34 +720,54 @@ class ListService {
                 });
             }
 
+            const summary = this.calculateSummary(list);
             const updatedList = await this.listsDb.update(id, {
                 status: 'completed',
                 completedAt: new Date().toISOString(),
-                summary: this.calculateSummary(list)
+                summary: summary
             });
 
-            // Publicar mensagem no RabbitMQ
+            const authHeader = req.header('Authorization') || 'Bearer demo-token';
+            const userEmail = await this.getUserEmail(list.userId, authHeader);
+
             try {
-                const connection = await amqp.connect(process.env.RABBITMQ_URL || 'amqp://localhost');
+                const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://localhost';
+                console.log(`[CHECKOUT] Publicando mensagem no RabbitMQ...`);
+                console.log(`[CHECKOUT] URL: ${rabbitmqUrl.replace(/:[^:@]+@/, ':****@')}`);
+                
+                const connection = await amqp.connect(rabbitmqUrl);
                 const channel = await connection.createChannel();
+                console.log(`[CHECKOUT] Conectado ao RabbitMQ`);
 
-                // Garantir que o exchange existe
                 await channel.assertExchange('shopping_events', 'topic', { durable: true });
+                console.log(`[CHECKOUT] Exchange 'shopping_events' verificado`);
 
-                // Publicar mensagem de checkout completado
                 const message = {
                     listId: id,
                     userId: list.userId,
-                    total: list.summary?.estimatedTotal || 0,
+                    userEmail: userEmail || 'email-nao-encontrado@example.com',
+                    total: summary.estimatedTotal || 0,
                     itemCount: list.items?.length || 0,
                     timestamp: new Date().toISOString()
                 };
 
-                channel.publish('shopping_events', 'list.checkout.completed', Buffer.from(JSON.stringify(message)));
+                const publicado = channel.publish('shopping_events', 'list.checkout.completed', Buffer.from(JSON.stringify(message)), { persistent: true });
+                
+                if (publicado) {
+                    console.log(`[CHECKOUT] Mensagem publicada com sucesso!`);
+                    console.log(`[CHECKOUT] Routing key: list.checkout.completed`);
+                    console.log(`[CHECKOUT] List ID: ${id}`);
+                } else {
+                    console.warn(`[CHECKOUT] AVISO: Buffer pode estar cheio, mensagem pode nao ter sido publicada`);
+                }
+                
                 await channel.close();
                 await connection.close();
+                console.log(`[CHECKOUT] Conexao fechada`);
             } catch (rabbitError) {
-                console.error('Erro ao publicar mensagem no RabbitMQ:', rabbitError);
+                console.error('[CHECKOUT] ERRO ao publicar mensagem no RabbitMQ:', rabbitError.message);
+                console.error('[CHECKOUT] Stack:', rabbitError.stack);
+                console.error('[CHECKOUT] RABBITMQ_URL configurada?', !!process.env.RABBITMQ_URL);
             }
 
             res.status(202).json({
