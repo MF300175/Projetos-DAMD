@@ -1,0 +1,119 @@
+# ============================================
+# .gitignore Global - Projetos DAMD
+# Criado em: 11/02/2025
+# ============================================
+
+# Build artifacts
+build/
+*/build/
+**/build/
+*.o
+*.a
+*.so
+*.dylib
+
+# Dependencies
+node_modules/
+.pub/
+.dart_tool/
+.pub-cache/
+vendor/
+bower_components/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.env
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Flutter specific
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+.dart_tool/
+
+# Android
+*.apk
+*.ap_
+*.aab
+local.properties
+*.iml
+.gradle/
+/captures/
+
+# iOS
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace/
+
+# Videos (opcional - descomentar se não usar Git LFS)
+# *.mp4
+# *.mov
+# *.avi
+
+# Arquivos grandes
+*.zip
+*.tar.gz
+*.rar
+
+# Arquivos de documentação temporários (se necessário)
+arquivos-nao-rastreados.txt
+arquivos-deletados.txt
+historico-recente.txt
+
+# Pasta auxiliar com documentação local (não versionada)
+auxiliares/
+
