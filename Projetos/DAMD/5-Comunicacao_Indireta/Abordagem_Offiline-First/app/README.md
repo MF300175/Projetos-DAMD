@@ -57,10 +57,7 @@ Substitua pelo IP do seu servidor.
 
 ## 📚 Documentação
 
-Consulte a documentação completa em `../docs/`:
-- Guias de instalação: `../docs/guias/`
-- Especificações: `../docs/especificacao/`
-- Análises: `../docs/analises/`
+Documentação completa disponível localmente em `auxiliares/` (não versionada).
 
 ## 🎯 Funcionalidades
 

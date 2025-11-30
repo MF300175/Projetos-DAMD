@@ -33,8 +33,7 @@ Este repositório contém o portfólio completo do curso DAMD, abrangendo:
 - [**ListaCompras_Flutter-OfflineFirst**](./ListaCompras_Flutter-OfflineFirst/) - App offline-first (25 pontos)
 
 ### **Documentação e Especificações**
-- [**docs**](./docs/) - Documentação técnica e guias
-- [**docs/Offline-First.md**](./docs/Offline-First.md) - Especificação projeto offline-first
+- Documentação técnica disponível localmente em `auxiliares/` (não versionada)
 
 ---
 
@@ -43,8 +42,8 @@ Este repositório contém o portfólio completo do curso DAMD, abrangendo:
 ### **Opção 1: Setup Completo**
 ```bash
 # Clonar repositório
-git clone https://github.com/MF300175/DAMD-Projetos.git
-cd DAMD-Projetos
+git clone https://github.com/MF300175/Projetos-DAMD.git
+cd Projetos-DAMD/Projetos
 
 # Instalar dependências
 npm run setup:all
@@ -76,7 +75,7 @@ Cada pasta tem seu próprio README com instruções específicas.
 - [x] **ListaCompras_MS-v2** - Sistema com mensageria RabbitMQ (15 pontos)
 - [x] **ListaCompras_Flutter** - App mobile básico
 - [x] **AppFlutter** - App Flutter avançado
-- [x] **DAMD-Projetos** - Repositório organizado e estruturado
+- [x] **Projetos-DAMD** - Repositório organizado e estruturado
 
 ### **🔄 Em Andamento**
 - [ ] **ListaCompras_Flutter-OfflineFirst** - Implementar offline-first (25 pontos)
@@ -126,9 +125,7 @@ Cada pasta tem seu próprio README com instruções específicas.
 
 ## 📚 **Documentação**
 
-- [Arquitetura de Microsserviços](./docs/arquitetura.md)
-- [Guia de Setup](./docs/setup.md)
-- [Comparação de Versões](./docs/comparacao-versoes.md)
+Documentação técnica disponível localmente em `auxiliares/` (não versionada).
 
 ---
 

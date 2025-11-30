@@ -128,13 +128,13 @@ Os vídeos seguem o padrão de nomenclatura:
 
 ## Como Adicionar Novos Vídeos
 
-1. **Gravar o vídeo** seguindo o roteiro em `Projetos/DAMD/PLANO-GRAVACAO-VIDEOS.md`
+1. **Gravar o vídeo** seguindo o padrão de nomenclatura
 2. **Nomear o arquivo** seguindo o padrão de nomenclatura
-3. **Copiar para esta pasta**: `Projetos/Videos/`
+3. **Copiar para esta pasta**: `Videos/`
 4. **Atualizar este README** com informações do novo vídeo
 5. **Commitar no Git**:
    ```bash
-   git add Projetos/Videos/
+   git add Videos/
    git commit -m "Adiciona video: [descrição]"
    git push
    ```
@@ -156,7 +156,7 @@ git lfs track "*.mp4"
 git add .gitattributes
 
 # Adicionar vídeos
-git add Projetos/Videos/*.mp4
+git add Videos/*.mp4
 
 # Commitar
 git commit -m "Adiciona videos usando Git LFS"
@@ -169,9 +169,7 @@ git push
 
 ## Documentação Relacionada
 
-- **Plano Completo de Gravação:** `Projetos/DAMD/PLANO-GRAVACAO-VIDEOS.md`
-- **Resumo Executivo:** `Projetos/DAMD/RESUMO-PLANO-GRAVACAO.md`
-- **Análise de Projetos Flutter:** `Projetos/DAMD/ANALISE-PROJETOS-FLUTTER.md`
+Documentação relacionada disponível localmente em `auxiliares/` (não versionada).
 
 ---
 

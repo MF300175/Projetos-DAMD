@@ -136,7 +136,7 @@ PORT=3001
 
 ## 📚 Documentação Completa
 
-Consulte `../docs/planos/PLANO-IMPLEMENTACAO-SERVIDOR.md` para detalhes completos.
+Documentação disponível localmente em `auxiliares/` (não versionada).
 
 ---
 

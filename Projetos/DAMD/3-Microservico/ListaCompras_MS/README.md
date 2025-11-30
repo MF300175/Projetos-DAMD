@@ -148,14 +148,14 @@ lista-compras-microservices/
 │   ├── item-service/          # Catálogo de produtos
 │   └── list-service/          # Listas de compras
 ├── api-gateway/               # Gateway principal
-└── Docs/                      # Documentação técnica e apresentação
+└── Videos-Docs/                # Vídeos e materiais de apresentação
 ```
 
 ---
 
 ## 📽️ **Materiais de Apresentação**
 
-A pasta `Docs/` contém os materiais visuais desenvolvidos para a demonstração do projeto:
+A pasta `Videos-Docs/` contém os materiais visuais desenvolvidos para a demonstração do projeto:
 
 ### **Arquivos Disponíveis:**
 - **`Diagrama.jpg`** - Diagrama da arquitetura do sistema de microsserviços

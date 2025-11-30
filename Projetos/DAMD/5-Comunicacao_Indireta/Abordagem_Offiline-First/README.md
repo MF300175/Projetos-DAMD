@@ -17,12 +17,6 @@ Este projeto implementa uma aplicação de gerenciamento de tarefas com arquitet
 Abordagem_Offiline-First/
 ├── app/                    # Aplicação Flutter (cliente mobile)
 ├── backend/                # Servidor backend (Node.js/Express)
-├── docs/                   # Documentação completa
-│   ├── especificacao/      # Especificações originais
-│   ├── guias/              # Guias de uso e instalação
-│   ├── analises/           # Análises e relatórios
-│   └── planos/             # Planos de implementação
-├── tests/                  # Testes automatizados
 ├── scripts/                # Scripts auxiliares
 └── build/                  # Arquivos de build (gitignored)
 ```
@@ -230,17 +224,7 @@ Substitua pelo IP do seu computador na rede local.
 
 ## Documentação
 
-Documentação completa disponível em docs/:
-
-- Especificação: docs/especificacao/
-- Guias: docs/guias/
-- Análises: docs/analises/
-- Planos: docs/planos/
-
-Principais guias:
-- COMO-MONITORAR-SINCRONIZACAO.md - Como monitorar sincronização
-- INSTALACAO-RAPIDA.md - Instalação rápida
-- VERIFICACAO-REQUISITOS.md - Verificação completa de requisitos
+Documentação completa disponível localmente na pasta `auxiliares/` do projeto principal.
 
 ## Status do Projeto
 
@@ -248,7 +232,7 @@ Principais guias:
 |------------|--------|------------|
 | Cliente Flutter | Completo | Funcionando offline |
 | Servidor Backend | Completo | API RESTful funcional |
-| Documentação | Completa | Organizada em docs/ |
+| Documentação | Completa | Disponível localmente em auxiliares/ |
 | Testes | Parcial | Testes manuais realizados |
 
 ## Verificação de Requisitos
@@ -264,7 +248,7 @@ Total: 25/25 pontos
 
 Roteiro de demonstração: 4/4 etapas atendidas
 
-Para detalhes completos da verificação, consulte docs/analises/VERIFICACAO-REQUISITOS.md
+Para detalhes completos da verificação, consulte a documentação local em `auxiliares/`.
 
 ## Requisitos
 
@@ -309,7 +293,7 @@ flutter build apk --debug
 - Executar flutter clean e flutter pub get
 - Verificar versão do Flutter SDK
 
-Consulte docs/guias/ para mais soluções.
+Consulte a documentação local em `auxiliares/` para mais soluções.
 
 ## Licença
 
@@ -317,4 +301,4 @@ Projeto acadêmico - PUC Minas
 
 ## Suporte
 
-Para dúvidas, consulte a documentação em docs/ ou os guias específicos.
+Para dúvidas, consulte a documentação local disponível em `auxiliares/` no diretório raiz do projeto.
