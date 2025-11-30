@@ -1,0 +1,62 @@
+[
+  {
+    "id": "e3d00a5a-9143-40e4-99e4-e953ee5fdf83",
+    "userId": "demo-user-id",
+    "name": "Lista de Compras Semanal",
+    "description": "Compras para a semana de 15/01 a 21/01",
+    "status": "active",
+    "items": [],
+    "summary": {
+      "totalItems": 0,
+      "purchasedItems": 0,
+      "estimatedTotal": 0
+    },
+    "createdAt": "2025-09-19T14:15:16.668Z",
+    "updatedAt": "2025-09-19T14:15:16.669Z"
+  },
+  {
+    "id": "e27d85aa-1179-4ae1-8552-2fa54937f492",
+    "userId": "demo-user-id",
+    "name": "Lista de Limpeza",
+    "description": "Produtos de limpeza para o mês",
+    "status": "active",
+    "items": [],
+    "summary": {
+      "totalItems": 0,
+      "purchasedItems": 0,
+      "estimatedTotal": 0
+    },
+    "createdAt": "2025-09-19T14:15:16.681Z",
+    "updatedAt": "2025-09-19T14:15:16.681Z"
+  },
+  {
+    "id": "64046e58-69cb-454c-9921-ec59ad7b08b4",
+    "userId": "demo-user-id",
+    "name": "Lista de Padaria",
+    "description": "Pães, bolos e doces",
+    "status": "active",
+    "items": [],
+    "summary": {
+      "totalItems": 0,
+      "purchasedItems": 0,
+      "estimatedTotal": 0
+    },
+    "createdAt": "2025-09-19T14:15:16.687Z",
+    "updatedAt": "2025-09-19T14:15:16.687Z"
+  },
+  {
+    "id": "d12981ac-2a2b-4304-acb5-5ef87be1a548",
+    "userId": "demo-user-id",
+    "name": "Lista Concluída",
+    "description": "Compras do final de semana passado",
+    "status": "active",
+    "items": [],
+    "summary": {
+      "totalItems": 0,
+      "purchasedItems": 0,
+      "estimatedTotal": 0
+    },
+    "createdAt": "2025-09-19T14:15:16.697Z",
+    "updatedAt": "2025-09-19T14:15:16.697Z"
+  }
+]

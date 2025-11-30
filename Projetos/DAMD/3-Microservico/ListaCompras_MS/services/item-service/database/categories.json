@@ -1,0 +1,37 @@
+[
+  {
+    "id": "866fd677-259a-415c-9c1d-60bb369cd9fb",
+    "name": "Alimentos",
+    "description": "Produtos alimentícios em geral",
+    "createdAt": "2025-09-19T13:12:46.998Z",
+    "updatedAt": "2025-09-19T13:12:46.999Z"
+  },
+  {
+    "id": "ec587723-0ceb-4401-a8ef-5bc6a09843de",
+    "name": "Limpeza",
+    "description": "Produtos de limpeza doméstica",
+    "createdAt": "2025-09-19T13:12:47.002Z",
+    "updatedAt": "2025-09-19T13:12:47.002Z"
+  },
+  {
+    "id": "2172dc95-d9aa-46ef-972c-17bfc8711956",
+    "name": "Higiene",
+    "description": "Produtos de higiene pessoal",
+    "createdAt": "2025-09-19T13:12:47.006Z",
+    "updatedAt": "2025-09-19T13:12:47.006Z"
+  },
+  {
+    "id": "1dd8dd25-e79a-488e-b88e-af21f3749197",
+    "name": "Bebidas",
+    "description": "Bebidas e líquidos",
+    "createdAt": "2025-09-19T13:12:47.009Z",
+    "updatedAt": "2025-09-19T13:12:47.009Z"
+  },
+  {
+    "id": "8a6bd862-ffe3-4d6a-a7b0-c555aa8ed2c2",
+    "name": "Padaria",
+    "description": "Produtos de padaria e confeitaria",
+    "createdAt": "2025-09-19T13:12:47.011Z",
+    "updatedAt": "2025-09-19T13:12:47.011Z"
+  }
+]
