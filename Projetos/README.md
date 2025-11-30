@@ -48,5 +48,5 @@ Cada módulo possui sua própria documentação e instruções de uso. Consulte 
 
 ---
 
-**Última atualização:** 11/02/2025
+**Última atualização:** 11/30/2025
 
