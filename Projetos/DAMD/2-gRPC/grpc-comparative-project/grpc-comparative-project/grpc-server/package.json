@@ -1,0 +1,29 @@
+{
+  "name": "grpc-server-comparative",
+  "version": "1.0.0",
+  "description": "Servidor gRPC para comparação com REST - Sistema de tarefas com autenticação, load balancing e chat",
+  "main": "src/server/server.js",
+  "scripts": {
+    "start": "node src/server/server.js",
+    "server": "node src/server/server.js",
+    "server:dev": "nodemon src/server/server.js",
+    "servers": "bash scripts/start-servers.sh",
+    "client": "node src/client/client.js",
+    "chat": "node src/client/chatClient.js",
+    "demo": "node demo.js",
+    "load-test": "node scripts/test-load-balancing.js",
+    "benchmark": "node benchmark.js",
+    "test": "echo 'Testes do servidor gRPC - use npm run benchmark para testes de performance'"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.0",
+    "@grpc/proto-loader": "^0.7.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "keywords": ["grpc", "protobuf", "jwt", "load-balancing", "chat", "streaming"],
+  "author": "Aluno PUC Minas",
+  "license": "MIT"
+}

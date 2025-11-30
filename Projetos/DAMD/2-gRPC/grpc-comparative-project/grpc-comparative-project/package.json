@@ -1,0 +1,43 @@
+{
+  "name": "grpc-comparative-project",
+  "version": "1.0.0",
+  "description": "Projeto comparativo REST vs gRPC - Análise de latência e throughput",
+  "main": "comparison/run-comparison.js",
+  "scripts": {
+    "start:rest": "cd rest-server && npm start",
+    "start:grpc": "cd grpc-server && npm start",
+    "start:both": "concurrently \"npm run start:rest\" \"npm run start:grpc\"",
+    "benchmark:rest": "cd rest-server && npm run benchmark",
+    "benchmark:grpc": "cd grpc-server && npm run benchmark",
+    "compare": "node comparison/run-comparison.js",
+    "install:all": "npm install && cd rest-server && npm install && cd ../grpc-server && npm install",
+    "test:rest": "cd rest-server && npm test",
+    "test:grpc": "cd grpc-server && npm test",
+    "test:all": "npm run test:rest && npm run test:grpc",
+    "clean": "rm -rf rest-server/node_modules grpc-server/node_modules node_modules",
+    "setup": "npm run install:all && npm run test:all"
+  },
+  "keywords": [
+    "grpc",
+    "rest",
+    "comparison",
+    "benchmark",
+    "latency",
+    "throughput",
+    "performance"
+  ],
+  "author": "Aluno PUC Minas",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

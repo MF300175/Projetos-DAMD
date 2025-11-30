@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package task;
+
+// Definição da mensagem Task
+message Task {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+  string priority = 5;
+  string user_id = 6;
+  int64 created_at = 7;
+}
+
+// Mensagens de requisição
+message CreateTaskRequest {
+  string title = 1;
+  string description = 2;
+  string priority = 3;
+  string user_id = 4;
+  string token = 5; // Adicionado para autenticação
+}
+
+message GetTaskRequest {
+  string id = 1;
+  string token = 2; // Adicionado para autenticação
+}
+
+message UpdateTaskRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+  string priority = 5;
+  string token = 6; // Adicionado para autenticação
+}
+
+message DeleteTaskRequest {
+  string id = 1;
+  string token = 2; // Adicionado para autenticação
+}
+
+message ListTasksRequest {
+  string user_id = 1;
+  bool completed = 2;
+  string priority = 3;
+  string token = 4; // Adicionado para autenticação
+}
+
+// Mensagens de resposta
+message TaskResponse {
+  bool success = 1;
+  string message = 2;
+  Task task = 3;
+}
+
+message TaskListResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Task tasks = 3;
+  int32 total = 4;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Mensagens de autenticação
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+  string token = 3;
+  string user_id = 4;
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message ValidateTokenResponse {
+  bool valid = 1;
+  string message = 2;
+  string user_id = 3;
+}
+
+// Mensagens de chat
+message ChatMessage {
+  string id = 1;
+  string user_id = 2;
+  string content = 3;
+  int64 timestamp = 4;
+}
+
+message SendMessageRequest {
+  string token = 1;
+  string content = 2;
+}
+
+// Definição do serviço gRPC
+service TaskService {
+  // Operações CRUD
+  rpc CreateTask(CreateTaskRequest) returns (TaskResponse);
+  rpc GetTask(GetTaskRequest) returns (TaskResponse);
+  rpc UpdateTask(UpdateTaskRequest) returns (TaskResponse);
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteResponse);
+  rpc ListTasks(ListTasksRequest) returns (TaskListResponse);
+  
+  // Streaming de notificações
+  rpc StreamTaskUpdates(ListTasksRequest) returns (stream TaskResponse);
+  
+  // Operações de autenticação
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
+  
+  // Chat bidirecional
+  rpc ChatStream(stream SendMessageRequest) returns (stream ChatMessage);
+}

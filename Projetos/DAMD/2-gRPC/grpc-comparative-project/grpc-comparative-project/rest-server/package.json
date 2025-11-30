@@ -1,0 +1,43 @@
+{
+  "name": "rest-server-comparative",
+  "version": "1.0.0",
+  "description": "Servidor REST para comparação com gRPC - Sistema de tarefas com autenticação, load balancing e chat",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "benchmark": "node benchmark.js",
+    "test": "echo 'Testes do servidor REST - use npm run benchmark para testes de performance'"
+  },
+  "keywords": [
+    "rest",
+    "express",
+    "jwt",
+    "websocket",
+    "load-balancing",
+    "chat",
+    "comparison"
+  ],
+  "author": "Aluno PUC Minas",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^2.7.0",
+    "uuid": "^9.0.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
