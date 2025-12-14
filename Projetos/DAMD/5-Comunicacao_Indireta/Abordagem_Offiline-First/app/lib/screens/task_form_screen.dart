@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'dart:convert';
 import '../models/category.dart';
 import '../models/task.dart';
 import '../services/database_service.dart';
 import '../services/notification_service.dart';
 import '../services/camera_service.dart';
 import '../services/location_service.dart';
+import '../services/api_service.dart';
 import '../widgets/location_picker.dart';
 
 class TaskFormScreen extends StatefulWidget {
@@ -33,6 +35,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
   double? _latitude;
   double? _longitude;
   String? _locationName;
+  bool _isUploadingPhoto = false;
 
   @override
   void initState() {
@@ -80,6 +83,28 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
     setState(() => _isLoading = true);
 
     try {
+      // Se houver foto e estivermos usando a versão Cloud, tentar enviar para o backend
+      String? remotePhotoKey;
+      if (_photoPath != null &&
+          ApiService.instance.baseUrl.contains(':3001')) {
+        try {
+          _isUploadingPhoto = true;
+          final bytes = await File(_photoPath!).readAsBytes();
+          final base64 = base64Encode(bytes);
+          final uploadResult = await ApiService.instance.uploadPhotoBase64(
+            imageBase64: base64,
+            fileName: _photoPath!.split(Platform.pathSeparator).last,
+            contentType: 'image/jpeg',
+          );
+          remotePhotoKey = uploadResult['key'] as String?;
+        } catch (e) {
+          // Em caso de erro, apenas loga e segue usando o caminho local
+          debugPrint('Erro ao enviar foto para S3 local: $e');
+        } finally {
+          _isUploadingPhoto = false;
+        }
+      }
+
       if (widget.task == null) {
         // Criar nova tarefa
         final newTask = Task(
@@ -90,7 +115,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
           dueDate: _dueDate,
           categoryId: _selectedCategoryId,
           reminderDateTime: _completed ? null : _reminderDateTime,
-          photoPath: _photoPath,
+          photoPath: remotePhotoKey ?? _photoPath,
           latitude: _latitude,
           longitude: _longitude,
           locationName: _locationName,
@@ -156,18 +181,23 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
   }
 
   Future<void> _handleNotification(Task task) async {
-    if (task.reminderDateTime != null && !task.completed) {
-      final body = task.dueDate != null
-          ? 'Vencimento em ${task.dueDate!.day.toString().padLeft(2, '0')}/${task.dueDate!.month.toString().padLeft(2, '0')}'
-          : 'Não esqueça desta tarefa!';
-      await NotificationService.scheduleTaskReminder(
-        taskId: task.id,
-        title: 'Lembrete: ${task.title}',
-        body: body,
-        scheduledAt: task.reminderDateTime!,
-      );
-    } else {
-      await NotificationService.cancelTaskReminder(task.id);
+    try {
+      if (task.reminderDateTime != null && !task.completed) {
+        final body = task.dueDate != null
+            ? 'Vencimento em ${task.dueDate!.day.toString().padLeft(2, '0')}/${task.dueDate!.month.toString().padLeft(2, '0')}'
+            : 'Não esqueça desta tarefa!';
+        await NotificationService.scheduleTaskReminder(
+          taskId: task.id,
+          title: 'Lembrete: ${task.title}',
+          body: body,
+          scheduledAt: task.reminderDateTime!,
+        );
+      } else {
+        await NotificationService.cancelTaskReminder(task.id);
+      }
+    } catch (e) {
+      // Ignorar erros de notificação para não bloquear outras funcionalidades
+      print('Erro ao gerenciar notificação (ignorado): $e');
     }
   }
 
@@ -233,7 +263,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
 
                     // Dropdown de Prioridade
                     DropdownButtonFormField<String>(
-                      initialValue: _priority,
+                      value: _priority,
                       decoration: const InputDecoration(
                         labelText: 'Prioridade',
                         prefixIcon: Icon(Icons.flag),

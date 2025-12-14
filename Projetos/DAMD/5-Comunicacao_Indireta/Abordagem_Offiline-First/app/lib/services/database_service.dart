@@ -2,18 +2,49 @@ import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '../models/task.dart';
 import '../models/category.dart';
 
 class DatabaseService {
   static final DatabaseService instance = DatabaseService._init();
   static Database? _database;
+  static String? _dbName;
 
   DatabaseService._init();
 
+  // Determinar nome do banco baseado no package name do app
+  // Isso garante que cada versão do app (Offline-First e Cloud) tenha seu próprio banco
+  Future<String> _getDbName() async {
+    if (_dbName != null) return _dbName!;
+    
+    try {
+      final packageInfo = await PackageInfo.fromPlatform();
+      final packageName = packageInfo.packageName;
+      
+      // Usar nome diferente baseado no package name
+      if (packageName == 'com.example.task_manager_cloud') {
+        _dbName = 'tasks_cloud.db';
+      } else if (packageName == 'com.example.task_manager_offline_first') {
+        _dbName = 'tasks_offline.db';
+      } else {
+        // Fallback: usar package name no nome do banco para evitar conflitos
+        final packageSuffix = packageName.split('.').last;
+        _dbName = 'tasks_$packageSuffix.db';
+      }
+    } catch (e) {
+      // Fallback se package_info não funcionar
+      print('Erro ao obter package info: $e');
+      _dbName = 'tasks.db';
+    }
+    
+    return _dbName!;
+  }
+  
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('tasks.db');
+    final dbName = await _getDbName();
+    _database = await _initDB(dbName);
     return _database!;
   }
 

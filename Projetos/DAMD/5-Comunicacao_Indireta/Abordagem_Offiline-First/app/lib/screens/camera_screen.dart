@@ -104,7 +104,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Colors.black.withValues(alpha: 0.8),
+                    Colors.black.withOpacity(0.8),
                     Colors.transparent,
                   ],
                 ),
@@ -127,7 +127,7 @@ class _CameraScreenState extends State<CameraScreen> {
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.white, width: 4),
                           color: _isCapturing
-                              ? Colors.grey.withValues(alpha: 0.5)
+                              ? Colors.grey.withOpacity(0.5)
                               : Colors.transparent,
                         ),
                         child: _isCapturing

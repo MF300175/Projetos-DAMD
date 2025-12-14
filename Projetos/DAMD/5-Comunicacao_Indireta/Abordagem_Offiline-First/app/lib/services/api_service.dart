@@ -167,6 +167,47 @@ class ApiService {
       throw ApiException('Erro de conexão: $e');
     }
   }
+
+  /// Envia uma foto em Base64 para o backend Cloud (/api/media/upload)
+  /// Retorna a chave/URL da imagem no S3 local.
+  Future<Map<String, dynamic>> uploadPhotoBase64({
+    required String imageBase64,
+    String? fileName,
+    String? contentType,
+    String? taskId,
+  }) async {
+    try {
+      final response = await http
+          .post(
+            Uri.parse('$baseUrl/media/upload'),
+            headers: _headers,
+            body: json.encode({
+              'imageBase64': imageBase64,
+              if (fileName != null) 'fileName': fileName,
+              if (contentType != null) 'contentType': contentType,
+              if (taskId != null) 'taskId': taskId,
+            }),
+          )
+          .timeout(const Duration(seconds: 30));
+
+      if (response.statusCode == 200 ||
+          response.statusCode == 201) {
+        final data = json.decode(response.body);
+        if (data is Map<String, dynamic>) {
+          return data;
+        }
+        throw ApiException('Resposta inesperada do servidor de upload');
+      } else if (response.statusCode == 400) {
+        throw ApiException('Dados de imagem inválidos', shouldRetry: false);
+      } else {
+        throw ApiException(
+            'Erro ao fazer upload da foto: ${response.statusCode}');
+      }
+    } catch (e) {
+      if (e is ApiException) rethrow;
+      throw ApiException('Erro de conexão no upload da foto: $e');
+    }
+  }
 }
 
 class ApiException implements Exception {

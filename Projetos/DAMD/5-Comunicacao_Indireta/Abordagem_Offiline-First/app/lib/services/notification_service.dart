@@ -82,11 +82,16 @@ class NotificationService {
   }
 
   static Future<void> cancelTaskReminder(String taskId) async {
-    if (!_initialized) {
-      await initialize();
-    }
+    try {
+      if (!_initialized) {
+        await initialize();
+      }
 
-    await _notificationsPlugin.cancel(_notificationIdFromTaskId(taskId));
+      await _notificationsPlugin.cancel(_notificationIdFromTaskId(taskId));
+    } catch (e) {
+      // Ignorar erros ao cancelar notificações (bug conhecido do plugin)
+      print('Erro ao cancelar notificação (ignorado): $e');
+    }
   }
 }
 

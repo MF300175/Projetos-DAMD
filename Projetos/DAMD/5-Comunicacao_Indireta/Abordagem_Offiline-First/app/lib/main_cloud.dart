@@ -8,17 +8,19 @@ import 'services/connectivity_service.dart';
 import 'services/sync_service.dart';
 import 'services/api_service.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  ApiService.instance.setBaseUrl('http://192.168.15.10:3000/api');
-  
+
+  // Versão Cloud/LocalStack: backend-aws na porta 3001
+  // ⚠️ IMPORTANTE: Atualizar IP para o IP do seu computador na rede local
+  ApiService.instance.setBaseUrl('http://192.168.15.10:3001/api');
+
   await NotificationService.initialize();
   await CameraService.instance.initialize();
   await LocationService.instance.initialize();
   await ConnectivityService.instance.initialize();
   await SyncService.instance.initialize();
-  
+
   runApp(const MyApp());
 }
 
@@ -55,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Task Manager Pro',
+      title: 'Task Manager Cloud',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -93,4 +95,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-

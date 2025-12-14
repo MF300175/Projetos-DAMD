@@ -257,9 +257,9 @@ class TaskCard extends StatelessWidget {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.orange.withValues(alpha: 0.1),
+                              color: Colors.orange.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.orange.withValues(alpha: 0.5)),
+                              border: Border.all(color: Colors.orange.withOpacity(0.5)),
                             ),
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,
@@ -339,9 +339,9 @@ class TaskCard extends StatelessWidget {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.purple.withValues(alpha: 0.1),
+                              color: Colors.purple.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.purple.withValues(alpha: 0.5)),
+                              border: Border.all(color: Colors.purple.withOpacity(0.5)),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -369,9 +369,9 @@ class TaskCard extends StatelessWidget {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.green.withValues(alpha: 0.1),
+                              color: Colors.green.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.green.withValues(alpha: 0.5)),
+                              border: Border.all(color: Colors.green.withOpacity(0.5)),
                             ),
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,

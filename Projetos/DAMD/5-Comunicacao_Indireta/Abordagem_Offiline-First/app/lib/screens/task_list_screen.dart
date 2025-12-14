@@ -102,7 +102,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   Future<void> _syncNotifications(List<Task> tasks) async {
     for (final task in tasks) {
-      await _handleNotificationForTask(task);
+      try {
+        await _handleNotificationForTask(task);
+      } catch (e) {
+        // Ignorar erros de notificação para não bloquear outras funcionalidades
+        print('Erro ao sincronizar notificação (ignorado): $e');
+      }
     }
   }
 
@@ -693,21 +698,26 @@ class _TaskListScreenState extends State<TaskListScreen> {
   }
 
   Future<void> _handleNotificationForTask(Task task) async {
-    if (task.reminderDateTime != null && !task.completed) {
-      if (task.reminderDateTime!.isAfter(DateTime.now())) {
-        final body = task.dueDate != null
-            ? 'Vencimento em ${_formatDate(task.dueDate!)}'
-            : 'Não esqueça desta tarefa!';
-        await NotificationService.scheduleTaskReminder(
-          taskId: task.id,
-          title: 'Lembrete: ${task.title}',
-          body: body,
-          scheduledAt: task.reminderDateTime!,
-        );
-        return;
+    try {
+      if (task.reminderDateTime != null && !task.completed) {
+        if (task.reminderDateTime!.isAfter(DateTime.now())) {
+          final body = task.dueDate != null
+              ? 'Vencimento em ${_formatDate(task.dueDate!)}'
+              : 'Não esqueça desta tarefa!';
+          await NotificationService.scheduleTaskReminder(
+            taskId: task.id,
+            title: 'Lembrete: ${task.title}',
+            body: body,
+            scheduledAt: task.reminderDateTime!,
+          );
+          return;
+        }
       }
+      await NotificationService.cancelTaskReminder(task.id);
+    } catch (e) {
+      // Ignorar erros de notificação para não bloquear outras funcionalidades
+      print('Erro ao gerenciar notificação (ignorado): $e');
     }
-    await NotificationService.cancelTaskReminder(task.id);
   }
 
   Future<void> _shareTask(Task task) async {
